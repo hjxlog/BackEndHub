@@ -1,4 +1,4 @@
-package com.hjxlog.example.collection;
+package com.hjxlog.module.collection;
 
 import java.util.HashMap;
 import java.util.Map;

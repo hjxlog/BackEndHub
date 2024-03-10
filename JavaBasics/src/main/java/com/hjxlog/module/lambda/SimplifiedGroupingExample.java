@@ -1,15 +1,16 @@
-package com.hjxlog.example.lambda;
+package com.hjxlog.module.lambda;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
-public class FlattenArrayListExample {
+public class SimplifiedGroupingExample {
 
     public static void main(String[] args) {
         // 假设你的数据结构
-        List<ArrayList<HashMap<String, String>>> nestedList = new ArrayList<>();
+        List<ArrayList<HashMap<String, String>>> listOfLists = new ArrayList<>();
 
         // 添加一些示例数据
         ArrayList<HashMap<String, String>> group1 = new ArrayList<>();
@@ -20,16 +21,22 @@ public class FlattenArrayListExample {
         group2.add(createHashMap("Group2", "Label1", "Value3"));
         group2.add(createHashMap("Group2", "Label2", "Value4"));
 
-        nestedList.add(group1);
-        nestedList.add(group2);
+        listOfLists.add(group1);
+        listOfLists.add(group2);
 
-        // 使用 Streams 进行打平
-        List<HashMap<String, String>> flattenedList = nestedList.stream()
+        // 使用 Streams 进行分组
+        Map<String, List<String>> groupedData = listOfLists.stream()
                 .flatMap(List::stream)
-                .collect(Collectors.toList());
+                .collect(Collectors.groupingBy(
+                        map -> map.get("groupName"),
+                        Collectors.mapping(map -> map.get("labelValueName"), Collectors.toList())
+                ));
 
-        // 输出打平后的数据
-        flattenedList.forEach(System.out::println);
+        // 输出分组后的数据
+        groupedData.forEach((groupName, labelValueNames) -> {
+            System.out.println("Group: " + groupName);
+            System.out.println("  LabelValueNames: " + labelValueNames);
+        });
     }
 
     private static HashMap<String, String> createHashMap(String groupName, String labelValueName, String value) {

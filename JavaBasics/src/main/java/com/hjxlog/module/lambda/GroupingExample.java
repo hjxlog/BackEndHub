@@ -1,12 +1,9 @@
-package com.hjxlog.example.lambda;
+package com.hjxlog.module.lambda;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
-public class SimplifiedGroupingExample {
+public class GroupingExample {
 
     public static void main(String[] args) {
         // 假设你的数据结构
@@ -25,17 +22,20 @@ public class SimplifiedGroupingExample {
         listOfLists.add(group2);
 
         // 使用 Streams 进行分组
-        Map<String, List<String>> groupedData = listOfLists.stream()
+        Map<String, Map<String, List<HashMap<String, String>>>> groupedData = listOfLists.stream()
                 .flatMap(List::stream)
                 .collect(Collectors.groupingBy(
                         map -> map.get("groupName"),
-                        Collectors.mapping(map -> map.get("labelValueName"), Collectors.toList())
+                        Collectors.groupingBy(map -> map.get("labelValueName"))
                 ));
 
         // 输出分组后的数据
-        groupedData.forEach((groupName, labelValueNames) -> {
+        groupedData.forEach((groupName, labelValueMap) -> {
             System.out.println("Group: " + groupName);
-            System.out.println("  LabelValueNames: " + labelValueNames);
+            labelValueMap.forEach((labelValueName, values) -> {
+                System.out.println("  LabelValue: " + labelValueName);
+                values.forEach(System.out::println);
+            });
         });
     }
 

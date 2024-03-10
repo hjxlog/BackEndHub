@@ -1,4 +1,4 @@
-package com.hjxlog.example.lambda;
+package com.hjxlog.module.lambda;
 
 import com.hjxlog.service.Command;
 
