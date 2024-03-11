@@ -6,7 +6,7 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class Blog {
+public class Blog implements Comparable<Blog> {
 
     private Integer id;
 
@@ -18,4 +18,10 @@ public class Blog {
 
     private String tags;
 
+    private Integer views;
+
+    @Override
+    public int compareTo(Blog blog) {
+        return this.getViews() - blog.getViews();
+    }
 }
