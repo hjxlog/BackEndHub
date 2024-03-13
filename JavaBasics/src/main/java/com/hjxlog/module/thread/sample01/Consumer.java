@@ -22,7 +22,7 @@ public class Consumer {
         }
     }
 
-//    private final Lock lock = new ReentrantLock();
+    private final Lock lock = new ReentrantLock();
 
 //    private String name;
 //
