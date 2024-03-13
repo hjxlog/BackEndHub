@@ -61,10 +61,17 @@ public class LambdaDemo04 {
 //        blogs.stream()
 //                .forEach(blog -> blog.getTitle());
 
-        long count = blogs.stream()
-                .map(blog -> blog.getCategory())
-                .count();
-        System.out.println(count);
+//        long count = blogs.stream()
+//                .map(blog -> blog.getCategory())
+//                .count();
+//        System.out.println(count);
+
+        List<Integer> numberList = Arrays.asList(1, 12, 3, 4, 5);
+
+        // 使用forEachOrdered打印列表中的每个数字
+        numberList.stream()
+                .forEachOrdered(System.out::println);
+
 
     }
 
