@@ -4,8 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 /**
  * @author: Huang JX
  * @date: 2024/2/4
@@ -13,16 +11,10 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Blog {
+public class Category {
 
     private Long id;
 
-    private String title;
-
-    private String content;
-
-    private Category category;
-
-    private List<Tag> tagList;
+    private String name;
 
 }
