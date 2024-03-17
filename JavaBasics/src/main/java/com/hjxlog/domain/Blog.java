@@ -2,27 +2,26 @@ package com.hjxlog.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
-import java.util.List;
 
-/**
- * @author: Huang JX
- * @date: 2024/2/4
- */
 @Data
 @AllArgsConstructor
-@NoArgsConstructor
-public class Blog {
+public class Blog implements Comparable<Blog> {
 
-    private Long id;
+    private Integer id;
 
     private String title;
 
-    private String content;
+    private String status;
 
-    private Category category;
+    private String category;
 
-    private List<Tag> tagList;
+    private String tags;
 
+    private Integer views;
+
+    @Override
+    public int compareTo(Blog blog) {
+        return this.getViews() - blog.getViews();
+    }
 }
