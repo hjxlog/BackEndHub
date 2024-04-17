@@ -1,8 +1,11 @@
 package com.hjxlog.module.util;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
+import java.util.stream.Stream;
 
 public class OptionalDemo {
     public static void main(String[] args) {
@@ -32,6 +35,12 @@ public class OptionalDemo {
 
         Integer integer = filteredOptional.get();
         System.out.println("integer = " + integer);
+
+        Stream<String> ss = Stream.of("ss");
+
+        Map map = new HashMap<>();
+        map.put("hello","trest");
+
 
     }
 }
